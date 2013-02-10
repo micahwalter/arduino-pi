@@ -39,7 +39,7 @@ void waitResponse(void);
 void getData(uint8_t outLength);
 void checkSum(uint8_t *dataTX);
 uint8_t lengthCheckSum(uint8_t *dataTX);
-
+void getMac();
 
 uint8_t dataRX[35];//Receive buffer.
 uint8_t dataTX[35];//Transmit buffer.
@@ -60,6 +60,7 @@ void setup()
 	//!It is needed to launch a simple command to sycnchronize
 	getFirmware();
 	configureSAM();
+	getMac();
 }
 
 void loop()
@@ -228,6 +229,15 @@ bool getFirmware(void)  //! It is needed to launch a simple command to sycnchron
 		fprintf(stderr," ");
 	}
 	fprintf(stderr,"\n");
+}
+
+//**********************************************************************
+//!Get the MAC address of the raspberry-pi
+void getMac()
+{
+	fprintf(stderr, "The MAC address of your Raspberry-Pi is: ");
+	system("ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+	fprintf(stderr, "\n");
 }
 
 //**********************************************************************
