@@ -25,8 +25,6 @@
 
 #include "arduPi.h"
 
-SerialPi Serial;
-
 uint8_t init(uint8_t *UID , uint8_t *ATQ);
 uint8_t authenticate(uint8_t *UID, uint8_t blockAddress, uint8_t *keyAccess);
 uint8_t writeData(uint8_t address, uint8_t *blockData);
